@@ -1,4 +1,3 @@
-const { options } = require("joi");
 const sql = require("mssql");
 
 const config = {
@@ -12,11 +11,14 @@ const config = {
   },
 };
 
-const poolPromis = new sql.ConnectionPool(config).connect().then((pool)=>{
-    console.log('connected to pool');
-    return pool
-}).catch((err)=>{
-    console.log('Error : ', err);
-})
+const poolPromis = new sql.ConnectionPool(config)
+  .connect()
+  .then((pool) => {
+    console.log("connected to pool");
+    return pool;
+  })
+  .catch((err) => {
+    console.log("Error : ", err);
+  });
 
-module.exports = poolPromis
+module.exports = poolPromis;
