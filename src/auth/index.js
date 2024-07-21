@@ -1,11 +1,13 @@
 const express = require("express");
 const authRoute = express.Router();
+const validate = require("../../middleware/validate");
+const {registerValidation,loginValidation} = require("./validation");
 
-authRoute.get("/register", (req, res) => {
-    res.json('register')
+authRoute.post("/register", validate(registerValidation), (req, res) => {
+  res.json("register");
 });
-authRoute.get("/login", (req, res) => {
-    res.json('login')
+authRoute.post("/login", validate(loginValidation), (req, res) => {
+  res.json("login");
 });
 
 module.exports = authRoute;
